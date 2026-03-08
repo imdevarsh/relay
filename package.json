@@ -4,7 +4,7 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-    "start": "bun run server/index.ts",
+		"start": "bun run server/index.ts",
 		"check": "biome check .",
 		"check:write": "biome check --write ."
 	},

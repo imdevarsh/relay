@@ -1,6 +1,8 @@
 {
 	"display_information": {
-		"name": "relay"
+		"name": "relay",
+		"description": "Slack pings without the hassle",
+		"background_color": "#2f3033"
 	},
 	"features": {
 		"app_home": {
@@ -19,6 +21,9 @@
 		}
 	},
 	"settings": {
+		"event_subscriptions": {
+			"bot_events": ["app_mention"]
+		},
 		"interactivity": {
 			"is_enabled": true
 		},
