@@ -1,6 +1,6 @@
 {
 	"display_information": {
-		"name": "Relay"
+		"name": "relay"
 	},
 	"features": {
 		"app_home": {
@@ -9,7 +9,7 @@
 			"messages_tab_read_only_enabled": true
 		},
 		"bot_user": {
-			"display_name": "Relay",
+			"display_name": "relay",
 			"always_online": true
 		}
 	},
