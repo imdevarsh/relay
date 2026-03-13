@@ -16,7 +16,7 @@ export const appMention = async ({
 		.toLowerCase();
 	if (!command) {
 		await client.chat.postEphemeral({
-			text: "Couldn't parse message - try visting my App Home for more details",
+			text: "Couldn't parse message",
 			channel: event.channel,
 			user: event.user,
 		});
@@ -34,7 +34,7 @@ export const appMention = async ({
 
 	if (!group) {
 		await client.chat.postEphemeral({
-			text: `Couldn't find a group named '${command}' - if you want to make a new group, visit my App Home`,
+			text: `Couldn't find a group named '${command}' - if you want to make a new group, run /relay create [name]`,
 			channel: event.channel,
 			user: event.user,
 		});
