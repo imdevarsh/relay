@@ -20,7 +20,7 @@ export default {
 			await client.usergroups.list({
 				include_disabled: true,
 			})
-		).usergroups?.find((x) => x.id === usergroupId)?.name;
+		).usergroups?.find((x) => x.id === usergroupId)?.handle;
 
 		if (!groupName) {
 			await respond("Couldn't find that usergroup!");
