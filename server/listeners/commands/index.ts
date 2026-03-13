@@ -11,13 +11,22 @@ import join from './join';
 import kick from './kick';
 import leave from './leave';
 import list from './list';
+import migrate from './migrate';
 
 export type Subcommand = {
 	name: string;
 	handler: Middleware<SlackCommandMiddlewareArgs, StringIndexed>;
 };
 
-const subcommands: Subcommand[] = [create, list, join, leave, invite, kick];
+const subcommands: Subcommand[] = [
+	create,
+	migrate,
+	list,
+	join,
+	leave,
+	invite,
+	kick,
+];
 
 export function parseSubcommand(text: string): {
 	subcommand: string | null;

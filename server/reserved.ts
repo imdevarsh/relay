@@ -15,7 +15,9 @@ export const RESERVED = new Set([
 	'undefined',
 ]);
 
-export const ALLOWED_CHARS = new Set('qwertyuiopasdfghjklzxcvbnm1234567890_-'.split(''));
+export const ALLOWED_CHARS = new Set(
+	'qwertyuiopasdfghjklzxcvbnm1234567890_-'.split(''),
+);
 
 export function validateGroupName(groupName: string) {
 	if (RESERVED.has(groupName)) return false;
