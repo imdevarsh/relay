@@ -8,6 +8,12 @@ export default {
 	handler: async ({ command, respond }) => {
 		const { args } = parseSubcommand(command.text);
 		const groupName = args;
+		if (!groupName) {
+			await respond(
+				`Couldn't find the group name in your command.\nUsage: \`${command.text.split(' ')[0]} create [group name]\``,
+			);
+			return;
+		}
 
 		if (
 			await db.query.groups.findFirst({

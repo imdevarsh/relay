@@ -8,10 +8,23 @@ export default {
 		const args = parseSubcommand(command.text).args.split(' ');
 
 		const groupName = args[0];
+		if (!groupName) {
+			await respond(
+				`Couldn't find the group name in your command.\nUsage: \`${command.text.split(' ')[0]} invite [group name] @user1 @user2 ...\``,
+			);
+			return;
+		}
+
 		const users = args
 			.slice(1)
 			.map((x) => x.match(/<@(.*?)(\|.*)?>/)?.[1])
 			.filter((x) => x !== undefined);
+		if (users.length === 0) {
+			await respond(
+				`No valid user mentions found in your command.\nUsage: \`${command.text.split(' ')[0]} invite [group name] @user1 @user2 ...\``,
+			);
+			return;
+		}
 
 		const group = await db.query.groups.findFirst({
 			where: {

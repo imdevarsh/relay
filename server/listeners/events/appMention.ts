@@ -85,6 +85,7 @@ export const appMention = async ({
 			errorMembers.push(member.userId);
 		}
 	}
+
 	if (errorMembers.length > 0) {
 		await client.chat.postEphemeral({
 			text: `Failed to ping ${errorMembers.length} ${errorMembers.length === 1 ? 'member' : 'members'} of '${command}' - ${errorMembers.map((x) => `<@${x}>`).join(' ')}`,

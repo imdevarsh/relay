@@ -10,7 +10,9 @@ export default {
 		const usergroupId = args[0]?.match(/<!subteam\^(.*?)(\|.*)?>/)?.[1];
 
 		if (!usergroupId) {
-			// TODO: invalid usage warning
+			await respond(
+				`Couldn't find the usergroup in your command.\nUsage: \`${command.text.split(' ')[0]} migrate @usergroup\``,
+			);
 			return;
 		}
 
@@ -53,7 +55,7 @@ export default {
 			return;
 		}
 
-    await db.transaction(async (tx) => {
+		await db.transaction(async (tx) => {
 			const [group] = await tx
 				.insert(groups)
 				.values({ name: groupName })
