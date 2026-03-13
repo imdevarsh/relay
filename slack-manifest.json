@@ -6,18 +6,32 @@
 	},
 	"features": {
 		"app_home": {
-			"home_tab_enabled": true,
+			"home_tab_enabled": false,
 			"messages_tab_enabled": true,
 			"messages_tab_read_only_enabled": true
 		},
 		"bot_user": {
 			"display_name": "relay",
 			"always_online": true
-		}
+		},
+		"slash_commands": [
+			{
+				"command": "/relay",
+				"description": "Manage Relay groups",
+				"usage_hint": "[subcommand]",
+				"should_escape": true
+			}
+		]
 	},
 	"oauth_config": {
 		"scopes": {
-			"bot": ["im:write", "app_mentions:read", "chat:write", "usergroups:read"]
+			"bot": [
+				"im:write",
+				"app_mentions:read",
+				"chat:write",
+				"usergroups:read",
+				"commands"
+			]
 		}
 	},
 	"settings": {

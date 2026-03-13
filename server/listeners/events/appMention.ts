@@ -1,7 +1,5 @@
 import type { AllMiddlewareArgs, SlackEventMiddlewareArgs } from '@slack/bolt';
-import { eq } from 'drizzle-orm';
 import { db } from '../../db';
-import { groups } from '../../db/schema';
 
 export const appMention = async ({
 	event,
@@ -26,7 +24,12 @@ export const appMention = async ({
 	}
 
 	const group = await db.query.groups.findFirst({
-		where: eq(groups.name, command),
+		where: {
+			name: command,
+		},
+		with: {
+			members: true,
+		},
 	});
 
 	if (!group) {
@@ -38,7 +41,11 @@ export const appMention = async ({
 		return;
 	}
 
-	if (!group.admins.includes(event.user)) {
+	if (
+		!group.members.some(
+			(member) => member.role === 'admin' && member.userId === event.user,
+		)
+	) {
 		await client.chat.postEphemeral({
 			text: `Sorry, you can't ping the group '${command}' because you are not an admin of it!`,
 			channel: event.channel,
@@ -71,11 +78,11 @@ export const appMention = async ({
 		try {
 			await client.chat.postMessage({
 				markdown_text: `<@${event.user}> has [pinged the group '${command}'](${permalink})!`,
-				channel: member,
+				channel: member.userId,
 			});
 		} catch (error) {
 			console.error(error);
-			errorMembers.push(member);
+			errorMembers.push(member.userId);
 		}
 	}
 	if (errorMembers.length > 0) {

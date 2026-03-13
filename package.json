@@ -13,15 +13,15 @@
 		"@biomejs/biome": "2.4.6",
 		"@types/bun": "latest",
 		"@types/pg": "^8.18.0",
-		"drizzle-kit": "^0.31.9"
+		"drizzle-kit": "^1.0.0-beta.17-67b1795"
 	},
 	"peerDependencies": {
-		"typescript": "^5"
+		"typescript": "^5.9.3"
 	},
 	"dependencies": {
 		"@slack/bolt": "^4.6.0",
 		"@t3-oss/env-core": "^0.13.10",
-		"drizzle-orm": "^0.45.1",
+		"drizzle-orm": "^1.0.0-beta.17-67b1795",
 		"pg": "^8.20.0",
 		"zod": "^4.3.6"
 	}
