@@ -4,6 +4,8 @@ import type {
 	SlackCommandMiddlewareArgs,
 	StringIndexed,
 } from '@slack/bolt';
+
+import create from './create';
 import invite from './invite';
 import join from './join';
 import kick from './kick';
@@ -15,7 +17,7 @@ export type Subcommand = {
 	handler: Middleware<SlackCommandMiddlewareArgs, StringIndexed>;
 };
 
-const subcommands: Subcommand[] = [list, join, leave, invite, kick];
+const subcommands: Subcommand[] = [create, list, join, leave, invite, kick];
 
 export function parseSubcommand(text: string): {
 	subcommand: string | null;
