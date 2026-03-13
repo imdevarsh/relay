@@ -11,7 +11,7 @@ export default {
 
 		if (!usergroupId) {
 			await respond(
-				`Couldn't find the usergroup in your command.\nUsage: \`${command.text.split(' ')[0]} migrate @usergroup\``,
+				`Couldn't find the usergroup in your command.\nUsage: \`${command.command} migrate @usergroup\``,
 			);
 			return;
 		}

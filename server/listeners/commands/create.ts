@@ -10,7 +10,7 @@ export default {
 		const groupName = args;
 		if (!groupName) {
 			await respond(
-				`Couldn't find the group name in your command.\nUsage: \`${command.text.split(' ')[0]} create [group name]\``,
+				`Couldn't find the group name in your command.\nUsage: \`${command.command} create [group name]\``,
 			);
 			return;
 		}

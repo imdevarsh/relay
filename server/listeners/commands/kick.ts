@@ -11,7 +11,7 @@ export default {
 		const groupName = args[0];
 		if (!groupName) {
 			await respond(
-				`Couldn't find the group name in your command.\nUsage: \`${command.text.split(' ')[0]} kick [group name] @user1 @user2 ...\``,
+				`Couldn't find the group name in your command.\nUsage: \`${command.command} kick [group name] @user1 @user2 ...\``,
 			);
 			return;
 		}
@@ -22,7 +22,7 @@ export default {
 			.filter((x) => x !== undefined);
 		if (users.length === 0) {
 			await respond(
-				`No valid user mentions found in your command.\nUsage: \`${command.text.split(' ')[0]} kick [group name] @user1 @user2 ...\``,
+				`No valid user mentions found in your command.\nUsage: \`${command.command} kick [group name] @user1 @user2 ...\``,
 			);
 			return;
 		}

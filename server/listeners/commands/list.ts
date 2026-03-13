@@ -8,7 +8,7 @@ export default {
 		const groupName = args;
 		if (!groupName) {
 			await respond(
-				`Couldn't find the group name in your command.\nUsage: \`${command.text.split(' ')[0]} list [group name]\``,
+				`Couldn't find the group name in your command.\nUsage: \`${command.command} list [group name]\``,
 			);
 			return;
 		}
