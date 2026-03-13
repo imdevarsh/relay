@@ -6,12 +6,14 @@ import type {
 } from '@slack/bolt';
 
 import create from './create';
+import demote from './demote';
 import invite from './invite';
 import join from './join';
 import kick from './kick';
 import leave from './leave';
 import list from './list';
 import migrate from './migrate';
+import promote from './promote';
 
 export type Subcommand = {
 	name: string;
@@ -26,6 +28,8 @@ const subcommands: Subcommand[] = [
 	leave,
 	invite,
 	kick,
+	promote,
+	demote,
 ];
 
 export function parseSubcommand(text: string): {
