@@ -72,7 +72,7 @@ export default {
 						({
 							groupId: group.id,
 							userId: user,
-							role: 'member',
+							role: user === command.user_id ? 'admin' : 'member',
 						}) satisfies typeof groupMembers.$inferInsert,
 				),
 			);
