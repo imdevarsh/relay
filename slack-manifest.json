@@ -26,13 +26,18 @@
 	"oauth_config": {
 		"scopes": {
 			"bot": [
-				"im:write",
+				"channels:read",
 				"app_mentions:read",
 				"chat:write",
+				"commands",
+				"im:write",
 				"usergroups:read",
-				"commands"
+				"groups:read",
+				"mpim:read",
+				"im:read"
 			]
-		}
+		},
+		"pkce_enabled": false
 	},
 	"settings": {
 		"event_subscriptions": {

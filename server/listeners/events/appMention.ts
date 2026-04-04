@@ -5,6 +5,7 @@ export const appMention = async ({
 	event,
 	client,
 	context,
+	logger,
 }: AllMiddlewareArgs & SlackEventMiddlewareArgs<'app_mention'>) => {
 	if (!event.user) return;
 
@@ -19,6 +20,50 @@ export const appMention = async ({
 			text: "Couldn't parse message",
 			channel: event.channel,
 			user: event.user,
+		});
+		return;
+	}
+
+	if (command === 'channel' || command === 'here') {
+		const conversationInfo = await client.conversations.info({
+			channel: event.channel,
+		});
+
+		if (
+			!conversationInfo.ok ||
+			!conversationInfo.channel ||
+			!conversationInfo.channel.creator
+		) {
+			logger.error(conversationInfo.error);
+			await client.chat.postEphemeral({
+				text: 'We had an issue! Please try again later.',
+				channel: event.channel,
+				user: event.user,
+			});
+			return;
+		}
+
+		if (conversationInfo.channel.creator !== event.user) {
+			await client.chat.postEphemeral({
+				text: `You are not the owner of the channel, so you cannot use a @${command} ping here.`,
+				channel: event.channel,
+				user: event.user,
+			});
+			return;
+		}
+
+		await client.chat.postMessage({
+			text: `@${command} ^^ (triggered by <@${event.user}>)`,
+			blocks: [
+				{
+					type: 'section',
+					text: {
+						type: 'mrkdwn',
+						text: `<!${command}> ^^ (triggered by <@${event.user}>)`,
+					},
+				},
+			],
+			channel: event.channel,
 		});
 		return;
 	}
